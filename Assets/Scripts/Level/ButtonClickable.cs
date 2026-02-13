@@ -9,6 +9,7 @@ public class ButtonClickable : MonoBehaviour, Clickable
 
     private float t = 1.0f;
     private Vector3 originalPosition;
+    private bool fresh = true;
 
     private void Start()
     {
@@ -34,7 +35,12 @@ public class ButtonClickable : MonoBehaviour, Clickable
 
     public bool IsFresh()
     {
-        return true;
+        return fresh;
+    }
+
+    public void SetFresh(bool fresh)
+    {
+        this.fresh = fresh;
     }
 
     public void OnClick()

@@ -12,4 +12,16 @@ UI: Looks like I'm supposed to enter a code here.
 UI: No, that's not it ... hmm.
 
 # Code Box Right
-UI: That's right!
+%Viewpoint Laser Grid
+%Action Laser Gate
+UI: Aha! Now I can get to the upper room!
+%Player
+
+# Code Box Already
+UI: I already solved this. No need to do it again.
+
+# Examine Laser
+UI: Those look painful. Best to stay away.
+
+# Examine Blood
+UI: Is that ... blood? Wonder what this means.

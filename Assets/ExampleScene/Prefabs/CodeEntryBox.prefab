@@ -481,8 +481,17 @@ MonoBehaviour:
   - {fileID: 3110048474189430735}
   - {fileID: 8269746408393293509}
   correctCode: 020000000300000001000000
-  rightCue: 
-  wrongCue: 
+  buttons:
+  - {fileID: 6413429549534759280}
+  - {fileID: 6047483482217670243}
+  - {fileID: 5052804788144187004}
+  - {fileID: 6259553268042048352}
+  - {fileID: 1118202726346864285}
+  - {fileID: 7785583876379898696}
+  - {fileID: 647897552428009839}
+  rightCue: Code Box Right
+  wrongCue: Code Box Wrong
+  alreadyCue: Code Box Already
 --- !u!1 &4964651442652036778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,7 +1347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97de72f6d7a2c0c488900c40737af024, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97de72f6d7a2c0c488900c40737af024, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1346,7 +1355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97de72f6d7a2c0c488900c40737af024, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97de72f6d7a2c0c488900c40737af024, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

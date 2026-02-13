@@ -7,6 +7,7 @@ public class Director : MonoBehaviour
 
     private Dictionary<string, List<string>> cueData;
     private Dictionary<string, Viewpoint> viewpoints;
+    private Dictionary<string, CuedAction> actions;
 
     private List<string> currentCueData;
     private int currentCueIndex = 0;
@@ -43,6 +44,13 @@ public class Director : MonoBehaviour
         foreach (Viewpoint viewpoint in FindObjectsByType<Viewpoint>(FindObjectsSortMode.None))
         {
             viewpoints[viewpoint.name] = viewpoint;
+        }
+
+        // Load the actions
+        actions = new Dictionary<string, CuedAction>();
+        foreach (CuedAction action in FindObjectsByType<CuedAction>(FindObjectsSortMode.None))
+        {
+            actions[action.name] = action;
         }
     }
 
@@ -82,6 +90,11 @@ public class Director : MonoBehaviour
                     FindAnyObjectByType<PlayerCamera>().SetToViewpoint(viewpoint);
                     viewpoint.StartTimer();
                     currentCueTask = viewpoint;
+                    break;
+                case "Action":
+                    CuedAction action = actions[cueParam];
+                    action.Invoke();
+                    currentCueTask = action;
                     break;
             }
         }

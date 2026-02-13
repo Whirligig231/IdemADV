@@ -5,9 +5,11 @@ public class CodeEntryManager : MonoBehaviour
 {
     public TextMeshPro[] texts;
     public int[] correctCode;
-    public string rightCue, wrongCue;
+    public ButtonClickable[] buttons;
+    public string rightCue, wrongCue, alreadyCue;
 
     private int[] digits;
+    private bool solved = false;
 
     private void Start()
     {
@@ -41,6 +43,12 @@ public class CodeEntryManager : MonoBehaviour
 
     public void TryCode()
     {
+        if (solved)
+        {
+            FindAnyObjectByType<Director>().ExecuteCue(alreadyCue);
+            return;
+        }
+
         bool correct = true;
         for (int i = 0; i < 3; i++)
         {
@@ -49,7 +57,14 @@ public class CodeEntryManager : MonoBehaviour
         }
 
         if (correct)
+        {
             FindAnyObjectByType<Director>().ExecuteCue(rightCue);
+            solved = true;
+            foreach (ButtonClickable button in buttons)
+            {
+                button.SetFresh(false);
+            }
+        }
         else
             FindAnyObjectByType<Director>().ExecuteCue(wrongCue);
     }
