@@ -45,6 +45,8 @@ public class ButtonClickable : MonoBehaviour, Clickable
 
     public void OnClick()
     {
+        GetComponent<AudioSource>()?.Play();
+
         callback.Invoke();
         t = 0.0f;
     }
