@@ -1,0 +1,4 @@
+interface Taskable
+{
+    bool HasFinished();
+}

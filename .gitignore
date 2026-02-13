@@ -1,0 +1,42 @@
+# Unity files
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+
+# VS files
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+.vs/
+*.ide*
+
+# Random operating system stuff
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+!Assets/UI/Icons
+ehthumbs.db
+Thumbs.db
+
+# Lock files
+UnityLockFile
+db.lock
+
+# Blender
+*.blend1
+*.blend1.meta
+
+# Audacity
+*.aup3
