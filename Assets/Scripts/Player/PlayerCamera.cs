@@ -6,7 +6,7 @@ public class PlayerCamera : MonoBehaviour
 
     private Viewpoint currentViewpoint;
 
-    private void Start()
+    private void Awake()
     {
         currentViewpoint = playerMovement.playerViewpoint;
         transform.position = currentViewpoint.transform.position;

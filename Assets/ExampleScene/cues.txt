@@ -1,3 +1,14 @@
+# Puzzle Room Intro
+%Viewpoint On Floor
+UI: Huh? Where am I?
+UI: Ugh, my head's pounding ...
+%Viewpoint Gotten Up
+UI: Oh fuck.
+UI: That's. That's the number 2 written in red.
+UI: This can only mean one thing ...
+UI: I'm in an escape room game! Fuck!
+%Player
+
 # Lights
 UI: Boob lights, I think they're called?
 UI: They're pretty dim ...

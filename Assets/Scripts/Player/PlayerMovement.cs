@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         pitch = Mathf.Clamp(pitch, -1.5f, 1.5f);
         playerViewpoint.transform.position = transform.position;
-        playerViewpoint.transform.rotation = Quaternion.Euler(Mathf.Rad2Deg * pitch, Mathf.Rad2Deg * yaw, 0.0f);
+        playerViewpoint.transform.rotation = transform.rotation * Quaternion.Euler(Mathf.Rad2Deg * pitch, Mathf.Rad2Deg * yaw, 0.0f);
 
         Vector2 moveVector = move.ReadValue<Vector2>();
         float controlForward = moveVector.y;

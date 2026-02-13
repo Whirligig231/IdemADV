@@ -13,7 +13,7 @@ public class Director : MonoBehaviour
     private int currentCueIndex = 0;
     private Taskable currentCueTask;
 
-    private void Start()
+    private void Awake()
     {
         // Load the cue list
         cueData = new Dictionary<string, List<string>>();
