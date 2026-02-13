@@ -19,6 +19,9 @@ ExportedObj/
 .vs/
 *.ide*
 
+# Logs
+*.log
+
 # Random operating system stuff
 .DS_Store
 .DS_Store?

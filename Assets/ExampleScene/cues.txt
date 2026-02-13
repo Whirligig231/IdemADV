@@ -4,3 +4,12 @@ UI: They're pretty dim ...
 
 # Pillars
 UI: Now these are fancy. Granite?
+
+# Examine Code Box
+UI: Looks like I'm supposed to enter a code here.
+
+# Code Box Wrong
+UI: No, that's not it ... hmm.
+
+# Code Box Right
+UI: That's right!

@@ -48,6 +48,9 @@ public class Director : MonoBehaviour
 
     public void ExecuteCue(string cueName)
     {
+        if (cueName == "")
+            return;
+
         currentCueData = cueData[cueName];
         currentCueIndex = 0;
         ProcessCue();
