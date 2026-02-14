@@ -1,6 +1,7 @@
 # Puzzle Room Intro
 %CutOut
 %Viewpoint On Floor
+%Music ExampleStart
 %FadeIn
 UI: Huh? Where am I?
 UI: Ugh, my head's pounding ...
@@ -9,6 +10,7 @@ UI: Oh fuck.
 UI: That's. That's the number 2 written in red.
 UI: This can only mean one thing ...
 UI: I'm in an escape room game! Fuck!
+%Music ExampleEscape
 %Player
 
 # Lights

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.gindemit.vorbis": "https://github.com/gindemit/unity-vorbis.git?path=/unity/Assets/VorbisPlugin/#0.4.1",
     "com.unity.collab-proxy": "2.11.3",
     "com.unity.feature.development": "1.0.2",
     "com.unity.inputsystem": "1.18.0",

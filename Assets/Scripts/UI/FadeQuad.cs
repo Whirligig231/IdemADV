@@ -39,7 +39,7 @@ public class FadeQuad : MonoBehaviour, Taskable
     public bool HasFinished()
     {
         if (dir > 0)
-            return (t >= 0.9999f);
+            return (t > 0.9999f);
         if (dir < 0)
             return (t < 0.0001f);
         return true;

@@ -124,6 +124,10 @@ public class Director : MonoBehaviour
                         currentCueTask = fadeQuad;
                     }
                     break;
+                case "Music":
+                    FindAnyObjectByType<MusicManager>().ChangeMusic(cueParam);
+                    currentCueTask = null;
+                    break;
             }
         }
         else if (cueLine.Contains(':'))
