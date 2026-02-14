@@ -96,6 +96,34 @@ public class Director : MonoBehaviour
                     action.Invoke();
                     currentCueTask = action;
                     break;
+                case "FadeIn":
+                    {
+                        FadeQuad fadeQuad = FindAnyObjectByType<FadeQuad>();
+                        fadeQuad.FadeIn();
+                        currentCueTask = fadeQuad;
+                    }
+                    break;
+                case "FadeOut":
+                    {
+                        FadeQuad fadeQuad = FindAnyObjectByType<FadeQuad>();
+                        fadeQuad.FadeOut();
+                        currentCueTask = fadeQuad;
+                    }
+                    break;
+                case "CutIn":
+                    {
+                        FadeQuad fadeQuad = FindAnyObjectByType<FadeQuad>();
+                        fadeQuad.CutIn();
+                        currentCueTask = fadeQuad;
+                    }
+                    break;
+                case "CutOut":
+                    {
+                        FadeQuad fadeQuad = FindAnyObjectByType<FadeQuad>();
+                        fadeQuad.CutOut();
+                        currentCueTask = fadeQuad;
+                    }
+                    break;
             }
         }
         else if (cueLine.Contains(':'))

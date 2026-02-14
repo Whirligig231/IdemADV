@@ -1,5 +1,7 @@
 # Puzzle Room Intro
+%CutOut
 %Viewpoint On Floor
+%FadeIn
 UI: Huh? Where am I?
 UI: Ugh, my head's pounding ...
 %Viewpoint Gotten Up
