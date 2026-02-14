@@ -57,6 +57,7 @@ public class TextAppearHandler : MonoBehaviour
         if (textLine == null)
             return;
 
+        bool playAudio = false;
         t += Time.deltaTime;
         while (t >= lengthIncrementTimer && currentIndex < textLine.Length)
         {
@@ -67,7 +68,13 @@ public class TextAppearHandler : MonoBehaviour
                 while (textLine[currentIndex - 1] != '>')
                     currentIndex++;
             }
+
+            if (textLine[currentIndex - 1] != ' ')
+                playAudio = true;
         }
+
+        if (playAudio)
+            GetComponent<AudioSource>().Play();
 
         TextMeshProUGUI tmpro = GetComponent<TextMeshProUGUI>();
         tmpro.text = textLine.Substring(0, currentIndex) + "<color=#00000000>"
