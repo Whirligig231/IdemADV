@@ -45,7 +45,7 @@ public static class SALoader
         return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
     }
 
-    public static AudioClip LoadMusic(string path)
+    public static AudioClip LoadOggAudio(string path)
     {
         return OggVorbis.VorbisPlugin.Load(Path.Combine(Application.streamingAssetsPath, path));
     }

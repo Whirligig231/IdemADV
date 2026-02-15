@@ -4,6 +4,7 @@ Obj/
 UnityGenerated/
 Library/
 Assets/AssetStoreTools*
+UserSettings/
 
 # VS files
 ExportedObj/

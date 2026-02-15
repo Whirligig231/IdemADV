@@ -898,8 +898,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26940d35cb9b2694cafda6639efe4404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Stage
-  playerCamera: {fileID: 29809876011110862}
   followPlayerCamera: 1
+  playerCamera: {fileID: 29809876011110862}
+  fadePlane: {fileID: 2559607642989639468}
 --- !u!1 &6326519630886030884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &893725779622143918
 Transform:
   m_ObjectHideFlags: 0

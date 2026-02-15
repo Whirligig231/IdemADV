@@ -6,10 +6,12 @@
 UI: Huh? Where am I?
 UI: Ugh, my head's pounding ...
 %Viewpoint Gotten Up
+%Stage
 UI: Oh fuck.
-UI: That's. That's the number 2 written in red.
+UI: That's. That's a weird cube that just faded into existence.
+%Unstage
 UI: This can only mean one thing ...
-UI: I'm in an escape room game! Fuck!
+UI: That's a placeholder in an incomplete engine! Fuck!
 %Music ExampleEscape
 %Player
 

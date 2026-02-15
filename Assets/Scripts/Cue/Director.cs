@@ -128,6 +128,20 @@ public class Director : MonoBehaviour
                     FindAnyObjectByType<MusicManager>().ChangeMusic(cueParam);
                     currentCueTask = null;
                     break;
+                case "Stage":
+                    {
+                        Stage stage = FindAnyObjectByType<Stage>();
+                        stage.FadeStageIn();
+                        currentCueTask = stage;
+                        break;
+                    }
+                case "Unstage":
+                    {
+                        Stage stage = FindAnyObjectByType<Stage>();
+                        stage.FadeStageOut();
+                        currentCueTask = stage;
+                        break;
+                    }
             }
         }
         else if (cueLine.Contains(':'))

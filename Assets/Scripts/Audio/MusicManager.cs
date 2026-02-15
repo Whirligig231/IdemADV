@@ -37,7 +37,7 @@ public class MusicManager : MonoBehaviour
         if (loadedSongs.ContainsKey(musicTitle))
             return;
 
-        AudioClip song = SALoader.LoadMusic("Music/" + musicTitle + ".ogg");
+        AudioClip song = SALoader.LoadOggAudio("Music/" + musicTitle + ".ogg");
         loadedSongs[musicTitle] = song;
     }
 
