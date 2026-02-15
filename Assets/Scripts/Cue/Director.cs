@@ -150,6 +150,13 @@ public class Director : MonoBehaviour
                         currentCueTask = stage;
                         break;
                     }
+                case "Video":
+                    {
+                        VideoManager video = FindAnyObjectByType<VideoManager>();
+                        video.LoadVideo(cueParam);
+                        currentCueTask = video;
+                        break;
+                    }
             }
         }
         else if (cueLine.Contains(':'))

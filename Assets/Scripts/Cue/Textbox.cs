@@ -9,10 +9,10 @@ public class Textbox : MonoBehaviour, Taskable
     public GameObject nameBase;
     public TextMeshProUGUI nameText;
     public TextAppearHandler textAppear;
+    public TextboxSound textboxSound;
 
     private InputAction interact;
     private int state = 0; // 0 = inactive, 1 = printing, 2 = done printing
-    private float t;
 
     private bool clickDisabledForThisFrame = false;
 
@@ -53,7 +53,6 @@ public class Textbox : MonoBehaviour, Taskable
     {
         clickDisabledForThisFrame = false;
         float soundLevel = 0;
-        t += Time.deltaTime;
 
         switch (state)
         {
@@ -66,7 +65,7 @@ public class Textbox : MonoBehaviour, Taskable
                 textboxBackground.enabled = true;
                 triangle.enabled = false;
                 nameBase.SetActive(textboxName != "");
-                soundLevel = Mathf.Pow(Mathf.Sin(t * 8.0f), 2.0f);
+                soundLevel = textboxSound.GetSoundLevel();
                 nameText.text = textboxName;
                 if (textAppear.IsFinished())
                     state = 2;
@@ -81,13 +80,30 @@ public class Textbox : MonoBehaviour, Taskable
         FindAnyObjectByType<Stage>().SetSoundLevel(textboxName, soundLevel);
     }
 
-    public void DisplayText(string name, string textLine, float time, bool timeIsTotal = false)
+    public void DisplayText(string name, string textLine, float time)
     {
+        bool timeIsTotal = false;
+
+        if (name != "")
+        {
+            textboxSound.LoadLine(name, textLine);
+        }
+        else
+        {
+            textboxSound.ClearLine();
+        }
         clickDisabledForThisFrame = true;
         state = 1;
-        t = 0.0f;
         textboxName = name;
         nameText.text = name;
+
+        textAppear.SetClickSoundFlag(!textboxSound.IsSoundLine());
+        if (textboxSound.IsSoundLine())
+        {
+            time = textboxSound.GetLineLength() * 0.8f; // Seems too slow otherwise
+            timeIsTotal = true;
+            textboxSound.PlayLine();
+        }
         textAppear.DisplayText(textLine, time, timeIsTotal);
     }
 

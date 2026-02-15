@@ -7,15 +7,24 @@ UI: Huh? Where am I?
 UI: Ugh, my head's pounding ...
 %Viewpoint Gotten Up
 %Stage Floating Orb
-UI: What the hell?
-Floating Orb: Hello. I am the mysterious floating orb.
-Floating Orb (happy): I am now happy.
+UI: What the hell are you?
+Floating Orb: I am the floating orb of puzzles!
+Floating Orb: If you want to escape this room, you will have to solve my puzzle.
+UI: But what if I don't want to?
+Floating Orb (sad): ... Then I will be sad.
+UI: I mean ... okay, no, that's fine.
+Floating Orb (happy): You will? Excellent!
+Floating Orb: Simply find your way to the exit door.
+Floating Orb: Good luck.
 %Unstage
-UI: Wait, where did you go?
-Floating Orb (): I can still speak when offscreen.
-UI: That's a placeholder in an incomplete engine! Fuck!
-%Music ExampleEscape
+UI: Ugh ... I'm not looking forward to this, but I don't want to make that orb feel bad.
+UI: Well, I might as well get started.
+%Music Silence
+%FadeOut
 %Player
+%Video EscapeRoomIntro
+%Music ExampleEscape
+%FadeIn
 
 # Lights
 UI: Boob lights, I think they're called?

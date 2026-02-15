@@ -8,10 +8,16 @@ public class TextAppearHandler : MonoBehaviour
     private int currentIndex;
     private float lengthIncrementTimer;
     private float t;
+    private bool playClickSound = true;
 
     private void Start()
     {
         // DisplayText("Hello! This is <i>a test!</i> Yay!", 0.05f);
+    }
+
+    public void SetClickSoundFlag(bool needsClickSound)
+    {
+        playClickSound = needsClickSound;
     }
 
     public void DisplayText(string textLine, float time, bool timeIsTotal = false)
@@ -21,7 +27,7 @@ public class TextAppearHandler : MonoBehaviour
         currentIndex = 0;
         t = 0;
         if (timeIsTotal)
-            lengthIncrementTimer = time / Mathf.Min(1.0f, totalLength);
+            lengthIncrementTimer = time / Mathf.Max(1.0f, totalLength);
         else
             lengthIncrementTimer = time;
     }
@@ -73,7 +79,7 @@ public class TextAppearHandler : MonoBehaviour
                 playAudio = true;
         }
 
-        if (playAudio)
+        if (playClickSound && playAudio)
             GetComponent<AudioSource>().Play();
 
         TextMeshProUGUI tmpro = GetComponent<TextMeshProUGUI>();
