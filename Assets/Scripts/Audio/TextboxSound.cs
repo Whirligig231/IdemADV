@@ -88,6 +88,9 @@ public class TextboxSound : MonoBehaviour
 
     public void ClearLine()
     {
+        AudioSource source = GetComponent<AudioSource>();
+        if (source.isPlaying)
+            source.Stop();
         isSoundLine = false;
     }
 
