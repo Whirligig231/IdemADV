@@ -130,8 +130,16 @@ public class Director : MonoBehaviour
                     break;
                 case "Stage":
                     {
+                        string[] personNames = cueParam.Split(',');
                         Stage stage = FindAnyObjectByType<Stage>();
-                        stage.FadeStageIn();
+                        if (personNames.Length == 0)
+                            stage.FadeStageIn("", "", "");
+                        else if (personNames.Length == 1)
+                            stage.FadeStageIn("", personNames[0].Trim(), "");
+                        else if (personNames.Length == 2)
+                            stage.FadeStageIn(personNames[0].Trim(), "", personNames[1].Trim());
+                        else
+                            stage.FadeStageIn(personNames[0].Trim(), personNames[1].Trim(), personNames[2].Trim());
                         currentCueTask = stage;
                         break;
                     }
@@ -148,8 +156,23 @@ public class Director : MonoBehaviour
         {
             // Dialogue line
             int colonPosition = cueLine.IndexOf(':');
-            string cueName = cueLine.Substring(0, colonPosition);
+            string cueNameMood = cueLine.Substring(0, colonPosition);
             string cueText = cueLine.Substring(colonPosition + 1).Trim();
+
+            string cueName = cueNameMood, cueMood = null;
+            if (cueNameMood.Contains('('))
+            {
+                int leftPosition = cueNameMood.IndexOf('(');
+                int rightPosition = cueNameMood.IndexOf(')');
+                cueName = cueNameMood.Substring(0, leftPosition).Trim();
+                cueMood = cueNameMood.Substring(leftPosition + 1, rightPosition - leftPosition - 1).Trim();
+            }
+
+            Stage stage = FindAnyObjectByType<Stage>();
+            if (cueMood != null)
+            {
+                stage.SetMood(cueName, cueMood);
+            }
 
             Textbox textbox = FindAnyObjectByType<Textbox>();
             string cueNameDisplay = cueName;

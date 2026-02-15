@@ -6,11 +6,13 @@
 UI: Huh? Where am I?
 UI: Ugh, my head's pounding ...
 %Viewpoint Gotten Up
-%Stage
-UI: Oh fuck.
-UI: That's. That's a weird cube that just faded into existence.
+%Stage Floating Orb
+UI: What the hell?
+Floating Orb: Hello. I am the mysterious floating orb.
+Floating Orb (happy): I am now happy.
 %Unstage
-UI: This can only mean one thing ...
+UI: Wait, where did you go?
+Floating Orb (): I can still speak when offscreen.
 UI: That's a placeholder in an incomplete engine! Fuck!
 %Music ExampleEscape
 %Player

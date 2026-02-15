@@ -12,6 +12,7 @@ public class Textbox : MonoBehaviour, Taskable
 
     private InputAction interact;
     private int state = 0; // 0 = inactive, 1 = printing, 2 = done printing
+    private float t;
 
     private bool clickDisabledForThisFrame = false;
 
@@ -51,6 +52,8 @@ public class Textbox : MonoBehaviour, Taskable
     private void Update()
     {
         clickDisabledForThisFrame = false;
+        float soundLevel = 0;
+        t += Time.deltaTime;
 
         switch (state)
         {
@@ -63,6 +66,7 @@ public class Textbox : MonoBehaviour, Taskable
                 textboxBackground.enabled = true;
                 triangle.enabled = false;
                 nameBase.SetActive(textboxName != "");
+                soundLevel = Mathf.Pow(Mathf.Sin(t * 8.0f), 2.0f);
                 nameText.text = textboxName;
                 if (textAppear.IsFinished())
                     state = 2;
@@ -73,12 +77,15 @@ public class Textbox : MonoBehaviour, Taskable
                 nameBase.SetActive(textboxName != "");
                 break;
         }
+
+        FindAnyObjectByType<Stage>().SetSoundLevel(textboxName, soundLevel);
     }
 
     public void DisplayText(string name, string textLine, float time, bool timeIsTotal = false)
     {
         clickDisabledForThisFrame = true;
         state = 1;
+        t = 0.0f;
         textboxName = name;
         nameText.text = name;
         textAppear.DisplayText(textLine, time, timeIsTotal);
