@@ -45,6 +45,7 @@ public class Textbox : MonoBehaviour, Taskable
             case 2:
                 state = 0;
                 textAppear.DisplayText("", 0);
+                textboxSound.ClearLine();
                 break;
         }
     }
@@ -68,10 +69,7 @@ public class Textbox : MonoBehaviour, Taskable
                 soundLevel = textboxSound.GetSoundLevel();
                 nameText.text = textboxName;
                 if (textAppear.IsFinished())
-                {
-                    textboxSound.ClearLine();
                     state = 2;
-                }
                 break;
             case 2:
                 textboxBackground.enabled = true;
