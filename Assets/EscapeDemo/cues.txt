@@ -53,3 +53,11 @@ UI: Those look painful. Best to stay away.
 
 # Examine Blood
 UI: Is that ... blood? Wonder what this means.
+
+# Examine Door
+UI: The exit door! But let's use the knob.
+
+# Use Door
+UI: It's unlocked! I'm free!
+%Music Silence
+%FadeOut
