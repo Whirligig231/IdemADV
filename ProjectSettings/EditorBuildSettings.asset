@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/EscapeDemo/EscapeDemo.unity
+    guid: 7fa25ebba4eebb94ab3ac1dcd7fa44d7
+  - enabled: 1
+    path: Assets/CutsceneDemo/CutsceneDemo.unity
+    guid: 3ab8a6fc7f802154e847edf47a6d2150
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 5e751307783cdd544adc5c062e4c18d4, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 5a5ed4e98f422a1498b3cafd1471e7ee, type: 3}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Director : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class Director : MonoBehaviour
 
     private Dictionary<string, List<string>> cueData;
 
-    private string defaultStartCue, startCue;
+    private static string startCue;
+    private string defaultStartCue;
 
     private Dictionary<string, Viewpoint> viewpoints;
     private Dictionary<string, CuedAction> actions;
+    private Dictionary<string, ToggleObject> toggles;
 
     private List<string> currentCueData;
     private int currentCueIndex = 0;
@@ -56,6 +59,13 @@ public class Director : MonoBehaviour
         {
             actions[action.name] = action;
         }
+
+        // Load the toggles
+        toggles = new Dictionary<string, ToggleObject>();
+        foreach (ToggleObject toggle in FindObjectsByType<ToggleObject>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            toggles[toggle.name] = toggle;
+        }
     }
 
     private void Start()
@@ -64,6 +74,8 @@ public class Director : MonoBehaviour
             ExecuteCue(startCue);
         else if (defaultStartCue != null)
             ExecuteCue(defaultStartCue);
+
+        startCue = null;
     }
 
     public void SetDefaultStartCue(string startCue)
@@ -172,6 +184,36 @@ public class Director : MonoBehaviour
                         VideoManager video = FindAnyObjectByType<VideoManager>();
                         video.LoadVideo(cueParam);
                         currentCueTask = video;
+                        break;
+                    }
+                case "Next":
+                    {
+                        string[] names = cueParam.Split(',');
+                        if (names.Length == 1 && cueData.ContainsKey(names[0].Trim()))
+                        {
+                            ExecuteCue(names[0].Trim());
+                            return;
+                        }
+                        else
+                        {
+                            if (names.Length >= 2)
+                                startCue = names[1].Trim();
+                            SceneManager.LoadScene(names[0].Trim());
+                            return;
+                        }
+                    }
+                case "ToggleOn":
+                    {
+                        ToggleObject toggle = toggles[cueParam];
+                        toggle.gameObject.SetActive(true);
+                        currentCueTask = null;
+                        break;
+                    }
+                case "ToggleOff":
+                    {
+                        ToggleObject toggle = toggles[cueParam];
+                        toggle.gameObject.SetActive(false);
+                        currentCueTask = null;
                         break;
                     }
             }

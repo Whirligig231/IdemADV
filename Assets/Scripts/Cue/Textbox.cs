@@ -21,12 +21,17 @@ public class Textbox : MonoBehaviour, Taskable
     private void Start()
     {
         interact = InputSystem.actions.FindAction("Interact");
-        interact.started += context => ProcessClick();
+        interact.started += ProcessClick;
 
         textboxBackground.enabled = false;
     }
 
-    private void ProcessClick()
+    private void OnDestroy()
+    {
+        interact.started -= ProcessClick;
+    }
+
+    private void ProcessClick(InputAction.CallbackContext context)
     {
         if (clickDisabledForThisFrame)
         {

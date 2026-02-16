@@ -61,3 +61,12 @@ UI: The exit door! But let's use the knob.
 UI: It's unlocked! I'm free!
 %Music Silence
 %FadeOut
+%Next CutsceneDemo
+
+# Tea for Two
+%CutOut
+%ToggleOn Table Setup
+%Viewpoint At Table
+%Music ExampleStart
+%FadeIn
+UI: Huh? Where am I?

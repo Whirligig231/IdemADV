@@ -14,7 +14,12 @@ public class Crosshair : MonoBehaviour
     private void Start()
     {
         interact = InputSystem.actions.FindAction("Interact");
-        interact.started += context => ProcessClick();
+        interact.started += ProcessClick;
+    }
+
+    private void OnDestroy()
+    {
+        interact.started -= ProcessClick;
     }
 
     private void Update()
@@ -51,7 +56,7 @@ public class Crosshair : MonoBehaviour
         }
     }
 
-    private void ProcessClick()
+    private void ProcessClick(InputAction.CallbackContext context)
     {
         if (!playerMovement.enabled)
             return;
