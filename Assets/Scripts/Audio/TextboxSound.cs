@@ -15,7 +15,8 @@ public class TextboxSound : MonoBehaviour
 
     private string GetLineFilename(string name, string textLine)
     {
-        textLine = textLine + "__________";
+        while (textLine.Length < 10)
+            textLine = textLine + "_";
         string path = "Dialogue/" + name.Trim().Replace(" ", "_");
         path += "/";
 

@@ -4,8 +4,8 @@ public class DefaultStartCue : MonoBehaviour
 {
     public string startCue;
 
-    private void Start()
+    private void Awake()
     {
-        FindAnyObjectByType<Director>().ExecuteCue(startCue);
+        FindAnyObjectByType<Director>().SetDefaultStartCue(startCue);
     }
 }

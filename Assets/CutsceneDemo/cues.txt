@@ -18,3 +18,7 @@ UI: No ... oh, god, no ...
 Floating Orb: .<delay=0.7>.<delay=0.7>.
 Floating Orb (happy): Nah, I'm just fucking with you, this is a simulation.
 UI: God <delay=1><i>damn</i> <delay=0.3>it.
+Floating Orb: Anyway, want to go back into the room with me? We can hang out.
+UI: ... I mean ... fuck it. Why not.
+Floating Orb: Wonderful. Follow me.
+%FadeOut

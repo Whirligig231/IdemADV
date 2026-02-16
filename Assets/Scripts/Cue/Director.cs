@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class Director : MonoBehaviour
     public TextAsset cueList;
 
     private Dictionary<string, List<string>> cueData;
+
+    private string defaultStartCue, startCue;
+
     private Dictionary<string, Viewpoint> viewpoints;
     private Dictionary<string, CuedAction> actions;
 
@@ -52,6 +56,19 @@ public class Director : MonoBehaviour
         {
             actions[action.name] = action;
         }
+    }
+
+    private void Start()
+    {
+        if (startCue != null)
+            ExecuteCue(startCue);
+        else if (defaultStartCue != null)
+            ExecuteCue(defaultStartCue);
+    }
+
+    public void SetDefaultStartCue(string startCue)
+    {
+        defaultStartCue = startCue;
     }
 
     public void ExecuteCue(string cueName)
