@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 
@@ -9,10 +12,12 @@ public class TextAppearHandler : MonoBehaviour
     private float lengthIncrementTimer;
     private float t;
     private bool playClickSound = true;
+    private Dictionary<string, Regex> tagRegexes;
 
     private void Start()
     {
-        // DisplayText("Hello! This is <i>a test!</i> Yay!", 0.05f);
+        tagRegexes = new Dictionary<string, Regex>();
+        tagRegexes["delay"] = new Regex("< *delay *= *([0-9.-]+) *>");
     }
 
     public void SetClickSoundFlag(bool needsClickSound)
@@ -40,8 +45,9 @@ public class TextAppearHandler : MonoBehaviour
         {
             totalLength++;
             index++;
-            if (index < textLine.Length && textLine[index] == '<')
+            while (index < textLine.Length && textLine[index] == '<')
             {
+                index++;
                 while (textLine[index - 1] != '>')
                     index++;
             }
@@ -69,10 +75,27 @@ public class TextAppearHandler : MonoBehaviour
         {
             t -= lengthIncrementTimer;
             currentIndex++;
-            if (currentIndex < textLine.Length && textLine[currentIndex] == '<')
+            while (currentIndex < textLine.Length && textLine[currentIndex] == '<')
             {
+                int ltPosition = currentIndex;
+                currentIndex++;
                 while (textLine[currentIndex - 1] != '>')
                     currentIndex++;
+                int rtPosition = currentIndex;
+                string tag = textLine.Substring(ltPosition, rtPosition - ltPosition);
+                foreach (string tagName in tagRegexes.Keys)
+                {
+                    Regex tagRegex = tagRegexes[tagName];
+                    Match match = tagRegex.Match(tag);
+                    if (!match.Success)
+                        continue;
+
+                    if (tagName == "delay")
+                    {
+                        float delay = float.Parse(match.Groups[1].Value);
+                        t -= delay;
+                    }
+                }
             }
 
             if (textLine[currentIndex - 1] != ' ')
@@ -83,7 +106,39 @@ public class TextAppearHandler : MonoBehaviour
             GetComponent<AudioSource>().Play();
 
         TextMeshProUGUI tmpro = GetComponent<TextMeshProUGUI>();
-        tmpro.text = textLine.Substring(0, currentIndex) + "<color=#00000000>"
-            + textLine.Substring(currentIndex, textLine.Length - currentIndex) + "</color>";
+        tmpro.text = RemoveCustomTags(textLine.Substring(0, currentIndex) + "<color=#00000000>"
+            + textLine.Substring(currentIndex, textLine.Length - currentIndex) + "</color>");
+    }
+
+    private string RemoveCustomTags(string textLine)
+    {
+        StringBuilder outputLine = new StringBuilder();
+        int index = 0;
+        while (index < textLine.Length)
+        {
+            outputLine.Append(textLine[index]);
+            index++;
+            while (index < textLine.Length && textLine[index] == '<')
+            {
+                int ltPosition = index;
+                index++;
+                while (textLine[index - 1] != '>')
+                    index++;
+                int rtPosition = index;
+                string tag = textLine.Substring(ltPosition, rtPosition - ltPosition);
+                bool matched = false;
+                foreach (Regex regex in tagRegexes.Values)
+                {
+                    if (regex.IsMatch(tag))
+                    {
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched)
+                    outputLine.Append(tag);
+            }
+        }
+        return outputLine.ToString();
     }
 }

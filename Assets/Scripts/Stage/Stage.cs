@@ -25,7 +25,7 @@ public class Stage : MonoBehaviour, Taskable
             if (person == null)
                 continue;
             persons[person.GetName()] = personTransform;
-            personTransform.gameObject.SetActive(false);
+            personTransform.gameObject.SetActive(true);
         }
     }
 
@@ -53,26 +53,26 @@ public class Stage : MonoBehaviour, Taskable
 
     public void FadeStageIn(string nameL, string nameC, string nameR)
     {
-        personL?.gameObject.SetActive(false);
-        personC?.gameObject.SetActive(false);
-        personR?.gameObject.SetActive(false);
+        if (personL != null)
+            personL.localPosition = Vector3.up * 10000.0f;
+        if (personC != null)
+            personC.localPosition = Vector3.up * 10000.0f;
+        if (personR != null)
+            personR.localPosition = Vector3.up * 10000.0f;
 
         if (nameL != "")
         {
             personL = persons[nameL];
-            personL.gameObject.SetActive(true);
             personL.localPosition = Vector3.right * -2.25f;
         }
         if (nameC != "")
         {
             personC = persons[nameC];
-            personC.gameObject.SetActive(true);
             personC.localPosition = Vector3.zero;
         }
         if (nameR != "")
         {
             personR = persons[nameR];
-            personR.gameObject.SetActive(true);
             personR.localPosition = Vector3.right * 2.25f;
         }
 

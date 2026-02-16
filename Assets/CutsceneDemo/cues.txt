@@ -1,0 +1,20 @@
+# Outdoor Scene
+%CutOut
+%Viewpoint Looking Out
+UI: No ... no way ...
+%Music ExampleStart
+%FadeIn
+UI: It's ... where's the outside world? Where am I?!
+Floating Orb (sad): There's nothing left for you.
+%Viewpoint Looking Back
+%Stage Floating Orb
+UI: What did you do?!
+Floating Orb: Nothing.
+Floating Orb: This is all that's left.
+Floating Orb: The world's been mostly destroyed.
+Floating Orb: You've been in cold sleep for 428 years.
+UI: No ... oh, god, no ...
+%Music Silence
+Floating Orb: .<delay=0.7>.<delay=0.7>.
+Floating Orb (happy): Nah, I'm just fucking with you, this is a simulation.
+UI: God <delay=1><i>damn</i> <delay=0.3>it.
