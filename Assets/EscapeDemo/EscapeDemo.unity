@@ -1531,6 +1531,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 410254, guid: 6c0524d101a187d42a6d9d01996e2e02, type: 3}
   m_PrefabInstance: {fileID: 984348522}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &988544605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 988544606}
+  - component: {fileID: 988544607}
+  m_Layer: 0
+  m_Name: OrbPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &988544606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988544605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.28, z: 1.185}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1559137456}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &988544607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988544605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29ab2526ba759349bc5725db1b3d578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StageMarker
+  name: Far Chair
 --- !u!1 &999516149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,7 +1620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 216415bb53078d94bb40165ad61b3d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DefaultStartCue
-  startCue: Tea for Two
+  startCue: Puzzle Room Intro
 --- !u!1001 &1029185338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2237,6 +2282,7 @@ Transform:
   - {fileID: 1767041249}
   - {fileID: 1841099568}
   - {fileID: 1799810681}
+  - {fileID: 988544606}
   m_Father: {fileID: 955043319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1559137457

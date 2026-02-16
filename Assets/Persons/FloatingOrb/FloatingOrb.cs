@@ -39,6 +39,9 @@ public class FloatingOrb : MonoBehaviour, Personable
             case "sad":
                 targetColor = new Color(0.2f, 0.4f, 0.6f);
                 break;
+            case "angry":
+                targetColor = new Color(0.6f, 0.1f, 0.0f);
+                break;
         }
     }
 

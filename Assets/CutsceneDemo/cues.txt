@@ -22,4 +22,4 @@ Floating Orb: Anyway, want to go back into the room with me? We can hang out.
 UI: ... I mean ... fuck it. Why not.
 Floating Orb: Wonderful. Follow me.
 %FadeOut
-%Next EscapeDemo, Lights
+%Next EscapeDemo, Tea for Two

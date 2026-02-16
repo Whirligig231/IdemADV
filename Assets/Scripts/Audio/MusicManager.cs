@@ -41,10 +41,10 @@ public class MusicManager : MonoBehaviour
         loadedSongs[musicTitle] = song;
     }
 
-    public void ChangeMusic(string musicTitle)
+    public void ChangeMusic(string musicTitle, bool instantCut)
     {
         PreloadMusic(musicTitle);
         nextMusicTitle = musicTitle;
-        musicDir = 1;
+        musicDir = instantCut ? 100 : 1;
     }
 }

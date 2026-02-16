@@ -67,6 +67,18 @@ UI: It's unlocked! I'm free!
 %CutOut
 %ToggleOn Table Setup
 %Viewpoint At Table
-%Music ExampleStart
+%Nop
+%StageInScene Floating Orb @ Far Chair
+%Music Brandenburg
+// "Brandenburg Concerto No4-1 BWV1049 - Classical Whimsical" by Kevin MacLeod, https://creativecommons.org/licenses/by/4.0/
 %FadeIn
-UI: Huh? Where am I?
+UI: Well, uh ... this is nice.
+UI: I didn't know floating orbs could drink tea.
+%MusicCut Silence
+Floating Orb (angry): We can't.
+%MusicCut Brandenburg
+Floating Orb (happy): But it doesn't matter.
+Floating Orb: Because at least I get to spend time with you!
+UI: ... Say, are you single?
+%Music Silence
+%FadeOut

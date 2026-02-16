@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,6 +23,10 @@ public class Director : MonoBehaviour
 
     private void Awake()
     {
+        StringBuilder debugInfoBuilder = new StringBuilder();
+        debugInfoBuilder.AppendLine("Director loading!");
+        debugInfoBuilder.AppendLine("\nCues:");
+
         // Load the cue list
         cueData = new Dictionary<string, List<string>>();
 
@@ -39,7 +44,10 @@ public class Director : MonoBehaviour
                 if (!cueData.ContainsKey(cueName))
                     cueData[cueName] = new List<string>();
                 currentCueData = cueData[cueName];
+                debugInfoBuilder.AppendLine("- " + cueName);
             }
+            else if (trimmedLine[0] == '/')
+                continue;
             else
             {
                 currentCueData.Add(trimmedLine);
@@ -47,25 +55,33 @@ public class Director : MonoBehaviour
         }
 
         // Load the viewpoints
+        debugInfoBuilder.AppendLine("\nViewpoints:");
         viewpoints = new Dictionary<string, Viewpoint>();
-        foreach (Viewpoint viewpoint in FindObjectsByType<Viewpoint>(FindObjectsSortMode.None))
+        foreach (Viewpoint viewpoint in FindObjectsByType<Viewpoint>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             viewpoints[viewpoint.name] = viewpoint;
+            debugInfoBuilder.AppendLine("- " + viewpoint.name);
         }
 
         // Load the actions
+        debugInfoBuilder.AppendLine("\nActions:");
         actions = new Dictionary<string, CuedAction>();
-        foreach (CuedAction action in FindObjectsByType<CuedAction>(FindObjectsSortMode.None))
+        foreach (CuedAction action in FindObjectsByType<CuedAction>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             actions[action.name] = action;
+            debugInfoBuilder.AppendLine("- " + action.name);
         }
 
         // Load the toggles
+        debugInfoBuilder.AppendLine("\nToggles:");
         toggles = new Dictionary<string, ToggleObject>();
         foreach (ToggleObject toggle in FindObjectsByType<ToggleObject>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
             toggles[toggle.name] = toggle;
+            debugInfoBuilder.AppendLine("- " + toggle.name);
         }
+
+        Debug.Log(debugInfoBuilder.ToString());
     }
 
     private void Start()
@@ -110,6 +126,9 @@ public class Director : MonoBehaviour
 
             switch (cueType)
             {
+                case "Nop":
+                    currentCueTask = null;
+                    break;
                 case "Player":
                     FindAnyObjectByType<PlayerCamera>().SetToPlayer();
                     currentCueTask = null;
@@ -154,22 +173,21 @@ public class Director : MonoBehaviour
                     }
                     break;
                 case "Music":
-                    FindAnyObjectByType<MusicManager>().ChangeMusic(cueParam);
+                    FindAnyObjectByType<MusicManager>().ChangeMusic(cueParam, false);
+                    currentCueTask = null;
+                    break;
+                case "MusicCut":
+                    FindAnyObjectByType<MusicManager>().ChangeMusic(cueParam, true);
                     currentCueTask = null;
                     break;
                 case "Stage":
                     {
-                        string[] personNames = cueParam.Split(',');
-                        Stage stage = FindAnyObjectByType<Stage>();
-                        if (personNames.Length == 0)
-                            stage.FadeStageIn("", "", "");
-                        else if (personNames.Length == 1)
-                            stage.FadeStageIn("", personNames[0].Trim(), "");
-                        else if (personNames.Length == 2)
-                            stage.FadeStageIn(personNames[0].Trim(), "", personNames[1].Trim());
-                        else
-                            stage.FadeStageIn(personNames[0].Trim(), personNames[1].Trim(), personNames[2].Trim());
-                        currentCueTask = stage;
+                        ProcessStageCue(cueParam, false);
+                        break;
+                    }
+                case "StageInScene":
+                    {
+                        ProcessStageCue(cueParam, true);
                         break;
                     }
                 case "Unstage":
@@ -251,6 +269,53 @@ public class Director : MonoBehaviour
             textbox.DisplayText(cueNameDisplay, cueText, cueSpeed); // TODO: More advanced processing
             currentCueTask = textbox;
         }
+    }
+
+    private void ProcessStageCue(string cueParam, bool putInMainLayer)
+    {
+        string[] personNames = cueParam.Split(',');
+        string[][] personNamesMarkers = new string[personNames.Length][];
+        for (int i = 0; i < personNames.Length; i++)
+        {
+            personNamesMarkers[i] = personNames[i].Split('@');
+        }
+
+        string nameL = "", markerL = "", nameC = "", markerC = "", nameR = "", markerR = "";
+
+        if (personNames.Length == 1)
+        {
+            nameC = personNamesMarkers[0][0].Trim();
+            if (personNamesMarkers[0].Length > 1)
+                markerC = personNamesMarkers[0][1].Trim();
+        }
+        else if (personNames.Length == 2)
+        {
+            nameL = personNamesMarkers[0][0].Trim();
+            if (personNamesMarkers[0].Length > 1)
+                markerL = personNamesMarkers[0][1].Trim();
+            nameR = personNamesMarkers[1][0].Trim();
+            if (personNamesMarkers[1].Length > 1)
+                markerR = personNamesMarkers[1][1].Trim();
+        }
+        else if (personNames.Length >= 3)
+        {
+            nameL = personNamesMarkers[0][0].Trim();
+            if (personNamesMarkers[0].Length > 1)
+                markerL = personNamesMarkers[0][1].Trim();
+            nameC = personNamesMarkers[1][0].Trim();
+            if (personNamesMarkers[1].Length > 1)
+                markerC = personNamesMarkers[1][1].Trim();
+            nameR = personNamesMarkers[2][0].Trim();
+            if (personNamesMarkers[2].Length > 1)
+                markerR = personNamesMarkers[2][1].Trim();
+        }
+
+        Stage stage = FindAnyObjectByType<Stage>();
+        stage.FadeStageIn(nameL, nameC, nameR, markerL, markerC, markerR, putInMainLayer);
+        if (putInMainLayer)
+            currentCueTask = null;
+        else
+            currentCueTask = stage;
     }
 
     public bool IsRunningCue()
