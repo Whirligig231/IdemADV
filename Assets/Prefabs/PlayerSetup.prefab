@@ -651,6 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a329917a9b257c944a967df30179e703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Crosshair
+  priorityDepth: 2
   cameraTransform: {fileID: 29809876011110862}
   playerMovement: {fileID: 6112324272238082182}
   dot: {fileID: 6909491143639671666}
@@ -1721,6 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fab11bf6bada8439079d2e4983e718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Textbox
+  priorityDepth: 1
   textboxBackground: {fileID: 7158965974326071332}
   triangle: {fileID: 8679965315217866508}
   nameBase: {fileID: 8879876753131172047}
@@ -1982,6 +1984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91309d11d0be7f4693cf784628a3670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priorityDepth: 2
   playerViewpoint: {fileID: 3090860270342434863}
 --- !u!1 &8879876753131172047
 GameObject:

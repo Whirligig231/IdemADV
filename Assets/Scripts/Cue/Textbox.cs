@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Textbox : MonoBehaviour, Taskable
+public class Textbox : ControlledMonoBehaviour, Taskable
 {
     public Image textboxBackground, triangle;
     public GameObject nameBase;
@@ -33,6 +33,9 @@ public class Textbox : MonoBehaviour, Taskable
 
     private void ProcessClick(InputAction.CallbackContext context)
     {
+        if (!HasPriority())
+            return;
+
         if (clickDisabledForThisFrame)
         {
             clickDisabledForThisFrame = false;
@@ -66,6 +69,7 @@ public class Textbox : MonoBehaviour, Taskable
                 textboxBackground.enabled = false;
                 triangle.enabled = false;
                 nameBase.SetActive(false);
+                enabled = false;
                 break;
             case 1:
                 textboxBackground.enabled = true;
@@ -88,6 +92,8 @@ public class Textbox : MonoBehaviour, Taskable
 
     public void DisplayText(string name, string textLine, float time)
     {
+        enabled = true;
+
         bool timeIsTotal = false;
 
         if (name != "")

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Crosshair : MonoBehaviour
+public class Crosshair : ControlledMonoBehaviour
 {
     public Transform cameraTransform;
     public PlayerMovement playerMovement;
@@ -26,7 +26,7 @@ public class Crosshair : MonoBehaviour
     {
         dot.enabled = playerMovement.enabled;
 
-        if (playerMovement.enabled)
+        if (playerMovement.enabled && HasPriority())
         {
             RaycastHit hit;
             if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, maxClickDistance))
@@ -59,6 +59,8 @@ public class Crosshair : MonoBehaviour
     private void ProcessClick(InputAction.CallbackContext context)
     {
         if (!playerMovement.enabled)
+            return;
+        if (!HasPriority())
             return;
         RaycastHit hit;
         if (!Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, maxClickDistance))

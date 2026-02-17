@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Selector : MonoBehaviour
+public class Selector : ControlledMonoBehaviour
 {
     public Pane pane;
     public new Camera camera;
@@ -48,6 +48,9 @@ public class Selector : MonoBehaviour
 
     private void ProcessClick(InputAction.CallbackContext context)
     {
+        if (!HasPriority())
+            return;
+
         if (selectionIndex < 0)
             selectionIndex = fallbackIndex;
         else
@@ -104,6 +107,9 @@ public class Selector : MonoBehaviour
 
     private void Update()
     {
+        if (!HasPriority())
+            return;
+
         int previousSelectionIndex = selectionIndex;
 
         Vector2 mousePosition = point.ReadValue<Vector2>();

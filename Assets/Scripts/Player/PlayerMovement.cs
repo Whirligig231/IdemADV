@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : ControlledMonoBehaviour
 {
     public Viewpoint playerViewpoint;
 
@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!HasPriority())
+            return;
+
         Vector2 lookVector = look.ReadValue<Vector2>();
         yaw += lookVector.x * turnSensitivity * Time.deltaTime;
         pitch -= lookVector.y * turnSensitivity * Time.deltaTime;

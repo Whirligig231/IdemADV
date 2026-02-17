@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Pane : MonoBehaviour
+public class Pane : ControlledMonoBehaviour
 {
     public float maxScale = 5.0f, minScale = 0.2f;
 
@@ -74,6 +74,9 @@ public class Pane : MonoBehaviour
 
     private void Update()
     {
+        if (!HasPriority())
+            return;
+
         Vector3 oldCenterLocalPosition = handle.InverseTransformPoint(transform.position);
 
         targetZoomPower += scrollWheel.ReadValue<Vector2>().y;
