@@ -32,6 +32,13 @@ UI: They're pretty dim ...
 
 # Pillars
 UI: Now these are fancy. Granite?
+%Dialog Are they granite?\Yes\Pillars Granite\No\Pillars Not Granite
+
+# Pillars Granite
+UI: Yep, they're granite.
+
+# Pillars Not Granite
+UI: Nah, they've gotta be fake. Plastic?
 
 # Examine Code Box
 UI: Looks like I'm supposed to enter a code here.

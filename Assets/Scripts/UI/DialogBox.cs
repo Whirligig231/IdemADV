@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class DialogBox : MonoBehaviour
+public class DialogBox : MonoBehaviour, Taskable
 {
     public Selector selector;
 
@@ -20,7 +20,7 @@ public class DialogBox : MonoBehaviour
         selector.enabled = false;
         transform.localScale = Vector3.zero;
 
-        ShowDialogBox("Hello there!", "Hi", "Fuck you");
+        // ShowDialogBox("Hello there!", "Hi", "Fuck you");
     }
 
     private void Update()
@@ -70,5 +70,10 @@ public class DialogBox : MonoBehaviour
             callbacks[i].Invoke();
         dir = -1;
         selector.enabled = false;
+    }
+
+    public bool HasFinished()
+    {
+        return !selector.enabled;
     }
 }

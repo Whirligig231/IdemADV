@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class Director : MonoBehaviour
@@ -206,7 +207,7 @@ public class Director : MonoBehaviour
                     }
                 case "Next":
                     {
-                        string[] names = cueParam.Split(',');
+                        string[] names = cueParam.Split('\\');
                         if (names.Length == 1 && cueData.ContainsKey(names[0].Trim()))
                         {
                             ExecuteCue(names[0].Trim());
@@ -232,6 +233,11 @@ public class Director : MonoBehaviour
                         ToggleObject toggle = toggles[cueParam];
                         toggle.gameObject.SetActive(false);
                         currentCueTask = null;
+                        break;
+                    }
+                case "Dialog":
+                    {
+                        ProcessDialogCue(cueParam);
                         break;
                     }
             }
@@ -269,6 +275,60 @@ public class Director : MonoBehaviour
             textbox.DisplayText(cueNameDisplay, cueText, cueSpeed); // TODO: More advanced processing
             currentCueTask = textbox;
         }
+    }
+
+    private void ProcessDialogCue(string cueParam)
+    {
+        string[] texts = cueParam.Split('\\');
+        string dialogTitle, optionL = null, optionC = null, optionR = null,
+            nextL = null, nextC = null, nextR = null;
+        if (texts.Length < 5)
+        {
+            dialogTitle = texts[0].Trim();
+            optionC = texts[1].Trim();
+            nextC = texts[2].Trim();
+        }
+        else if (texts.Length < 7)
+        {
+            dialogTitle = texts[0].Trim();
+            optionL = texts[1].Trim();
+            nextL = texts[2].Trim();
+            optionR = texts[3].Trim();
+            nextR = texts[4].Trim();
+        }
+        else
+        {
+            dialogTitle = texts[0].Trim();
+            optionL = texts[1].Trim();
+            nextL = texts[2].Trim();
+            optionC = texts[3].Trim();
+            nextC = texts[4].Trim();
+            optionR = texts[5].Trim();
+            nextR = texts[6].Trim();
+        }
+
+        DialogBox dialog = FindAnyObjectByType<DialogBox>();
+        if (nextL != null)
+        {
+            UnityEvent eventL = new UnityEvent();
+            eventL.AddListener(delegate { ExecuteCue(nextL); });
+            dialog.SetCallback(0, eventL);
+        }
+        if (nextC != null)
+        {
+            UnityEvent eventC = new UnityEvent();
+            eventC.AddListener(delegate { ExecuteCue(nextC); });
+            dialog.SetCallback(1, eventC);
+        }
+        if (nextR != null)
+        {
+            UnityEvent eventR = new UnityEvent();
+            eventR.AddListener(delegate { ExecuteCue(nextR); });
+            dialog.SetCallback(2, eventR);
+        }
+
+        dialog.ShowDialogBox(dialogTitle, optionL, optionC, optionR);
+        currentCueTask = dialog;
     }
 
     private void ProcessStageCue(string cueParam, bool putInMainLayer)
