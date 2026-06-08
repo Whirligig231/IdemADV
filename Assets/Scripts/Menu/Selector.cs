@@ -65,6 +65,9 @@ public class Selector : ControlledMonoBehaviour
         float closestDistance = 99999.0f;
         for (int i = 0; i < selectableTransforms.Count; i++)
         {
+            if (selectableTransforms[i].GetComponent<Selectable>().GetDisabled())
+                continue;
+
             Vector3 thisTransformPosition = transform.InverseTransformPoint(selectableTransforms[i].position);
             float distance = Vector3.Distance(localPosition, thisTransformPosition);
             if (considerRadius)

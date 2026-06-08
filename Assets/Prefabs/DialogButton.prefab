@@ -264,3 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d750510f03eb55e44abfe2143b29cd33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogButton
+  dbox: {fileID: 0}
+  myIndex: 0
+  label: {fileID: 8794264674377905147}

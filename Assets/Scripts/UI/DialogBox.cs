@@ -1,18 +1,26 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DialogBox : MonoBehaviour
 {
     public Selector selector;
 
+    public TextMeshProUGUI bodyText;
+    public DialogButton left, center, right;
+
+    private UnityEvent[] callbacks;
     private float t = 0.0f;
     private int dir = -1;
 
     private void Awake()
     {
+        callbacks = new UnityEvent[3];
+
         selector.enabled = false;
         transform.localScale = Vector3.zero;
 
-        ShowDialogBox("Hello there!", "Hi", "Bye", "Fuck you");
+        ShowDialogBox("Hello there!", "Hi", "Fuck you");
     }
 
     private void Update()
@@ -25,10 +33,42 @@ public class DialogBox : MonoBehaviour
         transform.localScale = new Vector3(scale * 0.75f, scale * 0.75f, 1);
     }
 
+    public void SetCallback(int i, UnityEvent callback)
+    {
+        callbacks[i] = callback;
+    }
+
     public void ShowDialogBox(string title, string optionL, string optionC, string optionR)
     {
+        bodyText.text = title;
+        left.SetText(optionL);
+        center.SetText(optionC);
+        right.SetText(optionR);
+
         t = 0.0f;
         dir = 1;
         selector.enabled = true;
+    }
+
+    public void ShowDialogBox(string title, string optionL, string optionR)
+    {
+        ShowDialogBox(title, optionL, null, optionR);
+    }
+
+    public void ShowDialogBox(string title, string optionC)
+    {
+        ShowDialogBox(title, null, optionC, null);
+    }
+
+    public void SelectCallback(int i)
+    {
+        if (!selector.enabled)
+            return;
+        if (callbacks[i] == null)
+            Debug.LogWarning("Dialog \"" + bodyText.text + "\" button " + i + " has no callback");
+        if (callbacks[i] != null)
+            callbacks[i].Invoke();
+        dir = -1;
+        selector.enabled = false;
     }
 }

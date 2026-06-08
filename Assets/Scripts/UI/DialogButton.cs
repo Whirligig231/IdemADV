@@ -1,7 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class DialogButton : MonoBehaviour, Selectable
 {
+    public DialogBox dbox;
+    public int myIndex;
+    public TextMeshProUGUI label;
     private bool isDisabled = false;
     private float t = 0.0f;
     private float targetT = 0.0f;
@@ -37,6 +41,13 @@ public class DialogButton : MonoBehaviour, Selectable
 
     public void Select()
     {
-        Debug.Log("PUSH");
+        dbox.SelectCallback(myIndex);
+    }
+
+    public void SetText(string text)
+    {
+        gameObject.SetActive(text != null);
+        isDisabled = (text == null);
+        label.text = text;
     }
 }
