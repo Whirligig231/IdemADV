@@ -18,8 +18,6 @@ public class PlayerMovement : ControlledMonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         move = InputSystem.actions.FindAction("Move");
         look = InputSystem.actions.FindAction("Look");
         mouselook = InputSystem.actions.FindAction("MouseLook");
