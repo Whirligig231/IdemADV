@@ -89,3 +89,4 @@ Floating Orb: Because at least I get to spend time with you!
 UI: ... Say, are you single?
 %Music Silence
 %FadeOut
+%Ending Teatime END

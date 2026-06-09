@@ -240,6 +240,12 @@ public class Director : MonoBehaviour
                         ProcessDialogCue(cueParam);
                         break;
                     }
+                case "Ending":
+                    {
+                        EndingCard.endingName = cueParam;
+                        SceneManager.LoadScene("EndingCard");
+                        return;
+                    }
             }
         }
         else if (cueLine.Contains(':'))

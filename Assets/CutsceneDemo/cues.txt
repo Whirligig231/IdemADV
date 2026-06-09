@@ -19,7 +19,24 @@ Floating Orb: .<delay=0.7>.<delay=0.7>.
 Floating Orb (happy): Nah, I'm just fucking with you, this is a simulation.
 UI: God <delay=1><i>damn</i> <delay=0.3>it.
 Floating Orb: Anyway, want to go back into the room with me? We can hang out.
+%Dialog Go with the Floating Orb?\Yes\Go With Orb\No\Don't Go With Orb
+
+# Go With Orb
 UI: ... I mean ... fuck it. Why not.
 Floating Orb: Wonderful. Follow me.
 %FadeOut
 %Next EscapeDemo\Tea for Two
+
+# Don't Go With Orb
+UI: Eww, no thanks.
+Floating Orb (angry): Wow. Orbophobe.
+%Unstage
+%Next Orbophobia
+
+# Orbophobia
+UI: I'm <i>not</i> an orbophobe!
+UI: Some of my best friends are balls!
+UI: ... Damn it.
+UI: I guess I'm stuck here.
+%FadeOut
+%Ending Orbophobia END
