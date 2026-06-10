@@ -1,0 +1,12 @@
+# The Room
+Entry: EscapeDemo, Puzzle Room Intro
+StartEnabled: True
+
+# The Outside
+Entry: CutsceneDemo, Outdoor Scene
+
+# Orbophobia END
+Entry: CutsceneDemo, Orbophobia
+
+# Teatime END
+Entry: EscapeDemo, Tea for Two

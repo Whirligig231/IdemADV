@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Flowchart/Flowchart.unity
+    guid: 45803bc7fcce7154ea0e331e105990e3
+  - enabled: 1
+    path: Assets/EndingCard/EndingCard.unity
+    guid: 126f0293c9ff28d4491cd7308f0e9904
+  - enabled: 1
     path: Assets/EscapeDemo/EscapeDemo.unity
     guid: 7fa25ebba4eebb94ab3ac1dcd7fa44d7
   - enabled: 1

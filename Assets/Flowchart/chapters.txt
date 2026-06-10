@@ -1,8 +1,0 @@
-# 1. The Room
-Entry: EscapeDemo, Puzzle Room Intro
-
-# 2. The Outside
-Entry: CutsceneDemo
-
-# 3. The Tea Party
-Entry: EscapeDemo, Tea for Two

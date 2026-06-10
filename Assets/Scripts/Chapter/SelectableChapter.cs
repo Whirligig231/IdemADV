@@ -13,6 +13,17 @@ public class SelectableChapter : MonoBehaviour, Selectable
     private float t = 0.0f;
     private float targetT = 0.0f;
 
+    private void Start()
+    {
+        if (!ChapterManagement.IsValidChapter(chapterName))
+        {
+            isDisabled = true;
+            return;
+        }
+
+        isDisabled = !ChapterManagement.IsChapterEnabled(chapterName);
+    }
+
     private void Update()
     {
         t = Mathf.Lerp(t, targetT, Time.deltaTime * 10.0f);
@@ -48,6 +59,8 @@ public class SelectableChapter : MonoBehaviour, Selectable
 
     public void Select()
     {
-        Debug.Log(chapterName);
+        string sceneName = ChapterManagement.GetChapterScene(chapterName);
+        string cueName = ChapterManagement.GetChapterCue(chapterName);
+        Director.ExecuteCueInScene(sceneName, cueName);
     }
 }

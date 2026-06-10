@@ -100,6 +100,12 @@ public class Director : MonoBehaviour
         defaultStartCue = startCue;
     }
 
+    public static void ExecuteCueInScene(string sceneName, string cueName)
+    {
+        startCue = cueName;
+        SceneManager.LoadScene(sceneName);
+    }
+
     public void ExecuteCue(string cueName)
     {
         if (cueName == "")
@@ -107,6 +113,7 @@ public class Director : MonoBehaviour
 
         currentCueData = cueData[cueName];
         currentCueIndex = 0;
+        ChapterManagement.SetChapterByCue(SceneManager.GetActiveScene().name, cueName);
         ProcessCue();
     }
 
