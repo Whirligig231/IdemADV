@@ -44,6 +44,7 @@ public static class ChapterManagement
         if (chapterName != null)
         {
             chapters[chapterName].enabled = true;
+            Globals.SetSaveVariable("chapterenabled_" + chapterName, "True");
             currentChapter = chapterName;
         }
     }
@@ -121,6 +122,16 @@ public static class ChapterManagement
                     currentChapterData.enabled = bool.Parse(value);
                 }
             }
+        }
+
+        // Load chapter initialization from file
+        foreach (string chapterName in chapters.Keys)
+        {
+            string enabledSave = Globals.GetSaveVariable("chapterenabled_" + chapterName);
+            if (enabledSave == null)
+                continue;
+            if (bool.Parse(enabledSave))
+                chapters[chapterName].enabled = true;
         }
 
         initialized = true;
